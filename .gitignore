@@ -1,0 +1,27 @@
+# Zig build artifacts
+.zig-cache/
+zig-out/
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Binary weight matrices and temporary stores
+*.bin
+*.chpe
+*.raw
+*.sqlite
+*.sqlite3
+db/layers/
+run/
+
+# Editor / OS noise
+.DS_Store
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
