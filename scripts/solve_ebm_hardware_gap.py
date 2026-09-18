@@ -501,6 +501,77 @@ HARDWARE_PROFILES = {
         "discourse_margin_threshold": 1.454124,
         "lambada_accuracy_target": 70.0
     },
+    "brandys_zen4_8700f": {
+        "profile_name": "brandys_zen4_8700f",
+        "hardware": "AMD Ryzen 7 8700F (8 Cores / 16 Threads @ 4.775 GHz All-Core AVX-512)",
+        "isa": "x86_64",
+        "cores": 8,
+        "cpu_clock_ghz": 4.775,
+        "vector_pipes_per_core": 2,          # Zen 4 dual 256-bit FMA pipelines executing 512-bit ZMM across 2 cycles
+        "vector_width_bits": 512,
+        "vector_dot_lanes": 16,              # 16 f32 / 32 bf16 / 64 int8 per cycle
+        "vector_inst": "vfmadd231ps",
+        "l1d_bytes_per_core": 32768,         # 32 KiB private L1d
+        "l1d_working_budget": 24576,         # 24 KiB budget (75% occupancy)
+        "l2_bytes_per_core": 1048576,        # 1 MiB private L2
+        "l3_shared_bytes": 16777216,         # 16 MiB unified die-wide L3
+        "b_single_core_memcpy_gb_s": 18.5000,# DDR5-5400 single-core
+        "b_saturated_bus_fp_gb_s": 43.2000,  # DDR5-5400 dual-channel saturated bandwidth
+        "model_bytes": 1642431488,           # Qwen2.5-3B-Instruct.w2f64.dense.chpe (1.642 GB)
+        "total_parameters": 3086110720,
+        "layers": 36,
+        "vocab_size": 151936,
+        "hidden_dim": 2048,
+        "intermediate_dim": 11008,
+        "llama_bench_fp16_tg128_tok_s": 14.20,
+        "llama_bench_fp16_pp512_tok_s": 48.00,
+        "llama_bench_q4km_tg128_tok_s": 38.50,
+        "llama_bench_q4km_pp512_tok_s": 95.00,
+        "current_chpe_decode_ms": 78.40,
+        "current_chpe_tok_s": 12.755,
+        "target_throughput_tok_s": 51.28,   # Saturated Q4/INT8 DRAM floor: 0.821 GB / 43.2 GB/s = 19.0 ms
+        "target_decode_ms": 19.50,
+        "target_squeezed_decode_ms": 19.50,
+        "logit_cosine_similarity": 0.99999,
+        "max_logit_delta": 0.0001,
+        "discourse_margin_threshold": 0.0002,
+        "lambada_accuracy_target": 70.0
+    },
+    "brandys_rx7700xt": {
+        "profile_name": "brandys_rx7700xt",
+        "hardware": "AMD Radeon RX 7700 XT (54 CUs / 3456 SPs, RDNA3 gfx1101 @ 2.774 GHz)",
+        "isa": "amdgcn",
+        "cores": 54,                         # 54 Compute Units
+        "cpu_clock_ghz": 2.774,              # Physical sustained boost clock under load
+        "vector_pipes_per_core": 2,          # Dual-issue SIMD32 per CU
+        "vector_width_bits": 1024,           # Wave32 x 32 lanes x 32-bit
+        "vector_dot_lanes": 32,              # Wave32 native
+        "vector_inst": "v_wmma_f32_16x16x16_f16",
+        "l1d_bytes_per_core": 32768,         # 32 KiB L1 per Dual-CU
+        "l1d_working_budget": 24576,
+        "l2_bytes_per_core": 4194304,        # 4 MiB L2 cache
+        "l3_shared_bytes": 50331648,         # 48 MiB Infinity Cache
+        "b_single_core_memcpy_gb_s": 14.2350,# PCIe Gen4 x16 measured copy rate
+        "b_saturated_bus_fp_gb_s": 432.0000, # 12 GiB GDDR6 VRAM physical bandwidth
+        "model_bytes": 1932271616,           # Qwen2.5-3B-Instruct.w2f64.chpe (1.80 GiB)
+        "total_parameters": 3086110720,
+        "layers": 36,
+        "vocab_size": 151936,
+        "hidden_dim": 2048,
+        "intermediate_dim": 11008,
+        "llama_bench_fp16_tg128_tok_s": 35.00,
+        "llama_bench_fp16_pp512_tok_s": 120.00,
+        "llama_bench_q4km_tg128_tok_s": 52.00,
+        "llama_bench_q4km_pp512_tok_s": 180.00,
+        "current_chpe_decode_ms": 22.97,    # Measured live on Brandys RX 7700 XT (43.53 tok/s min)
+        "current_chpe_tok_s": 43.53,
+        "target_throughput_tok_s": 55.00,
+        "target_decode_ms": 18.18,          # Theoretical VRAM saturation: 1.80 GB / 432 GB/s = 4.17 ms floor
+        "logit_cosine_similarity": 0.99999,
+        "max_logit_delta": 0.0001,
+        "discourse_margin_threshold": 0.0002,
+        "lambada_accuracy_target": 70.0
+    },
     "neoverse_n1_qwen35_fp16": {
         "profile_name": "neoverse_n1_qwen35_fp16",
         "hardware": "ARMv8.2-A Neoverse-N1 (4 Cores @ 3.0 GHz) - Qwen3.5-9B FP16",
