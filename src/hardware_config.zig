@@ -2,50 +2,50 @@
 //! Generated automatically by scripts/solve_ebm_hardware_gap.py
 //! Verified by Z3 + Vampire + Leo-III + EBM solver stack.
 
-pub const TARGET_HARDWARE = "AMD Ryzen 7 8700F (8 Cores / 16 Threads @ 4.775 GHz All-Core AVX-512)";
-pub const TARGET_ISA = "x86_64";
-pub const ACTIVE_CORES: usize = 8;
-pub const VOCAB_ROWS_PER_CORE: usize = 18992;
-pub const L1D_WORKING_BUDGET_BYTES: usize = 24576;
-pub const TILE_WORKING_SET_BYTES: usize = 10240;
+pub const TARGET_HARDWARE = "ARMv8.2-A Neoverse-N1 (4 Cores @ 3.0 GHz) - Qwen3.5-9B Q8";
+pub const TARGET_ISA = "arm64";
+pub const ACTIVE_CORES: usize = 4;
+pub const VOCAB_ROWS_PER_CORE: usize = 62080;
+pub const L1D_WORKING_BUDGET_BYTES: usize = 49152;
+pub const TILE_WORKING_SET_BYTES: usize = 32768;
 
-pub const FUSED_SWIGLU_WORKING_SET_BYTES: usize = 2048;
-pub const UNFUSED_TWOPASS_WORKING_SET_BYTES: usize = 88064;
-pub const TILES_PER_GROUP: usize = 8;
-pub const TOTAL_INTERMEDIATE_TILES: usize = 688;
-pub const TOTAL_INTERMEDIATE_GROUPS: usize = 86;
+pub const FUSED_SWIGLU_WORKING_SET_BYTES: usize = 128;
+pub const UNFUSED_TWOPASS_WORKING_SET_BYTES: usize = 98304;
+pub const TILES_PER_GROUP: usize = 1;
+pub const TOTAL_INTERMEDIATE_TILES: usize = 3072;
+pub const TOTAL_INTERMEDIATE_GROUPS: usize = 3072;
 pub const WORKER_0_TILE_START: usize = 0;
-pub const WORKER_0_TILE_END: usize = 176;
-pub const WORKER_1_TILE_START: usize = 176;
-pub const WORKER_1_TILE_END: usize = 352;
-pub const WORKER_2_TILE_START: usize = 352;
-pub const WORKER_2_TILE_END: usize = 520;
-pub const WORKER_3_TILE_START: usize = 520;
-pub const WORKER_3_TILE_END: usize = 688;
+pub const WORKER_0_TILE_END: usize = 768;
+pub const WORKER_1_TILE_START: usize = 768;
+pub const WORKER_1_TILE_END: usize = 1536;
+pub const WORKER_2_TILE_START: usize = 1536;
+pub const WORKER_2_TILE_END: usize = 2304;
+pub const WORKER_3_TILE_START: usize = 2304;
+pub const WORKER_3_TILE_END: usize = 3072;
 pub const SDOT_VECTOR_REGS_USED: usize = 26;
 pub const SDOT_VECTOR_REGS_BUDGET: usize = 32;
 
 pub const SYMMETRICAL_ROW_ISOLATION: bool = true;
 pub const SYMMETRICAL_BLOCK_SIZE: usize = 128;
 
-pub const VECTOR_DOT_LANES: usize = 16;
-pub const VECTOR_INSTRUCTION = "vfmadd231ps";
-pub const VECTOR_WIDTH_BITS: usize = 512;
+pub const VECTOR_DOT_LANES: usize = 4;
+pub const VECTOR_INSTRUCTION = "sdot.4s";
+pub const VECTOR_WIDTH_BITS: usize = 128;
 pub const UNROLL_ACCUMULATOR_FACTOR: usize = 2;
-pub const REDUCTION_STRIDE: usize = 2048;
-pub const USE_INT8_SDOT: bool = false;
+pub const REDUCTION_STRIDE: usize = 4096;
+pub const USE_INT8_SDOT: bool = true;
 
-pub const DRAM_BANDWIDTH_SATURATION_GB_S: f32 = 43.2000;
-pub const TARGET_THROUGHPUT_TOK_S: f32 = 51.28;
-pub const TARGET_DECODE_MS: f32 = 19.50;
-pub const LATEST_MEASURED_DECODE_MS: f32 = 78.40;
-pub const LATEST_MEASURED_TOK_S: f32 = 12.755;
+pub const DRAM_BANDWIDTH_SATURATION_GB_S: f32 = 41.8449;
+pub const TARGET_THROUGHPUT_TOK_S: f32 = 42.00;
+pub const TARGET_DECODE_MS: f32 = 23.81;
+pub const LATEST_MEASURED_DECODE_MS: f32 = 62.69;
+pub const LATEST_MEASURED_TOK_S: f32 = 15.952;
 
 // Upstream competitor baseline & remaining squeeze target
-pub const LLAMA_BASELINE_MS: f32 = 25.97;
-pub const LLAMA_BASELINE_TOK_S: f32 = 38.50;
-pub const REMAINING_GAP_TO_LLAMA_MS: f32 = 52.43;
-pub const SQUEEZED_TARGET_DECODE_MS: f32 = 19.50;
+pub const LLAMA_BASELINE_MS: f32 = 66.62;
+pub const LLAMA_BASELINE_TOK_S: f32 = 15.01;
+pub const REMAINING_GAP_TO_LLAMA_MS: f32 = -3.93;
+pub const SQUEEZED_TARGET_DECODE_MS: f32 = 64.38;
 pub const SQUEEZED_TARGET_TOK_S: f32 = 15.53;
 
 // Profiled layer breakdown (ms)
